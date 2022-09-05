@@ -2,6 +2,7 @@ import { HardhatUserConfig, task } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "@nomiclabs/hardhat-etherscan";
 require("dotenv").config();
+require("./tasks/block-number");
 
 const MUMBAI_RPC_URL: string = process.env.MUMBAI_RPC_URL!;
 const PRIVATE_KEY = process.env.PRIVATE_KEY!;
