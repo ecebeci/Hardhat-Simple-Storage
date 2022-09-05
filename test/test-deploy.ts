@@ -11,7 +11,7 @@ describe("SimpleStorage", () => {
   });
 
   it("Should start with a favorite number of 0", async function () {
-    const currentValue = await simpleStorage.retrieve(); // BigNumber doner. BigNumber islemlerinde karsilastirmak icin expected value string olmalidir
+    const currentValue = await simpleStorage.retrieve(); // BigNumber. We should use string for compare BigNumber variables
     const expectedValue = "0";
     // assert
     assert.equal(currentValue.toString(), expectedValue);
@@ -26,4 +26,4 @@ describe("SimpleStorage", () => {
     // expect
     expect(currentValue.toString()).to.equal(expectedValue);
   });
-}); // anonymous function function testFunc() {} = () => {}
+});

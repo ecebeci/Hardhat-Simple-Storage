@@ -1,6 +1,6 @@
 // import
 import { ethers, run, network } from "hardhat"; //input ethers from hardhat not npm ether package. Without that hardhat wont neccesarily know about contrac factories in different places and pieces
-// run allows us run hardhat tasks
+// {run} allows us run hardhat tasks (run.address )
 
 // define async main
 async function main() {
@@ -9,14 +9,14 @@ async function main() {
   // on the other hand, ethers inside the hardhat package knows the contract and knows that we compiled the code (wallet rpc all of them are bundled in the hardhat.)
   console.log("Deploying, please wait...");
   const simpleStorage = await SimpleStorageFactory.deploy(); // deploys on the blockchain
-  await simpleStorage.deployed(); // deployed olmasi daha iyi cunku yeni deploy olduktan sonra kodda gecikme olursa bulunmasinda sorun olmasin diye deployTransaction wait 1 block dan daha iyi gibi. Anlamak istiyorsan kutuphanedeki kodlari karsilastir
+  await simpleStorage.deployed();
   // what is the private key and rpc url?
   console.log(`Deployed contract to ${simpleStorage.address}`);
   // what happens when we deploy to our hardhat network
   if (network.config.chainId === 80001 && process.env.ETHERSCAN_API_KEY) {
     // mumbai and etherscan_api_key is not undefined
     console.log("Waiting block confirmations...");
-    await simpleStorage.deployTransaction.wait(6);
+    await simpleStorage.deployTransaction.wait(6); // We need to wait at least 5 blocks for etherscan verification
     await verify(simpleStorage.address, []);
   }
 
@@ -30,7 +30,7 @@ async function main() {
   console.log(`Updated Value is: ${updatedValue}`);
 }
 
-// verify code on block explorers (mainnet and testnet usage only)
+// verify code on block explorers (mainnet or testnet usage only)
 async function verify(contractAddress: string, args: string[]) {
   console.log("Verifying contract...");
   try {
