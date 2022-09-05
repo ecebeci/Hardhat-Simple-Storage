@@ -14,3 +14,11 @@ npx hardhat node
 npx hardhat run scripts/deploy.ts
 npx hardhat run scripts/deploy.ts --network mumbai
 ```
+
+Create .env file and put these variables as your variable
+```bash
+MUMBAI_RPC_URL=
+PRIVATE_KEY=
+ETHERSCAN_API_KEY=
+COINMARKETCAP_API_KEY=
+```
